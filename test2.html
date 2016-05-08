@@ -1,0 +1,94 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="javascript">
+	var dt=[];
+	for(var i=0; i<16; i++){
+		var dc = parseInt(Math.random()*(35)) + 5, mc = parseInt(Math.random()*(600)) + 105;
+		dt.push({ 'day':dc, 'month':mc});
+	}
+	
+	cout(dt);
+
+	function cout(obj){
+		console.log(obj);
+	}
+	var dc = dt.map(function(d, i){ return d.day; });
+	var mc = dt.map(function(d, i){ return d.month; });
+	var pp=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+	var x = dt.map(function(d, i){ return "员工" + pp[i]; });
+	cout(dc);
+	cout(mc);
+	cout(x);
+option = {
+    title : {
+        text: '部门员工消费统计',
+        subtext: '就餐数据'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['日均消费','月均消费']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            axisLabel: {
+          		rotate: 60,
+			},
+			data : x,
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'日均消费',
+            type:'bar',
+            data:dc,
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            }
+        },
+        {
+            name:'月均消费',
+            type:'bar',
+            data:mc,
+            markPoint : {
+                data : [
+                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name : '平均值'}
+                ]
+            }
+        }
+    ]
+};
+      
+	  cout(option);                                  
+</script>

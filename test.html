@@ -1,0 +1,93 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="javascript">
+	var dt=[];
+	for(var i=0; i<23; i++){
+		var dm = parseInt(Math.random()*(125)) + 35, dn = parseInt(Math.random()*(245)) + 55;
+		dt.push({ 'morning':390 + dm, 'night':15 * 60 - 30 + dn});
+		cout([getMini(dt[i].morning), getMini(dt[i].night)]);
+	}
+	
+	cout(dt);
+	function getMini(date){
+		return parseInt(date/60) + ":" + date % 60;
+	}
+	function cout(obj){
+		console.log(obj);
+	}
+	var m = dt.map(function(d, i){ return d.morning; });
+	var n = dt.map(function(d, i){ return d.night; });
+	var x = dt.map(function(d, i){ return "第" + (i+1) +"天"; });
+	cout(m);
+	cout(n);
+	cout(x);
+option = {
+    title : {
+        text: '李四-3月份上下班打卡时间',
+        subtext: ''
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['上班时间','下班时间']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+          	axisLabel: {
+          	rotate: 60,
+          },
+            data : ["第1天", "第2天", "第3天", "第4天", "第5天", "第6天", "第7天", "第8天", "第9天", "第10天", "第11天", "第12天", "第13天", "第14天", "第15天", "第16天", "第17天", "第18天", "第19天", "第20天", "第21天", "第22天", "第23天"]
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: function(params){ return parseInt(params / 60) + ":" + params % 60;}
+            }
+        }
+    ],
+    series : [
+        {
+            name:'上班时间',
+            type:'line',
+            data:[543, 502, 441, 495, 565, 529, 471, 473, 473, 486, 460, 525, 438, 533, 461, 481, 523, 492, 467, 440, 481, 493, 514],
+            markPoint : {
+                data : [
+                    {xAxis : 4,yAxis: 565,name: '最大值'}
+                ]
+            },
+            markLine : {
+                data : [[{name: '标线1起点', xAxis:-1, yAxis: 526},
+        			{name: '标线1终点', xAxis: 22, yAxis: 526}
+                ]]
+            }
+        },
+        {
+            name:'下班时间',
+            type:'line',
+            data:[991, 989, 1108, 1133, 1042, 998, 1153, 982, 949, 1036, 1105, 1095, 1069, 1090, 961, 982, 1011, 1091, 1120, 1005, 959, 935, 945],
+            
+            markLine : {
+                data : [[{name: '标线1起点', xAxis:-1, yAxis: 945},
+        			{name: '标线1终点', xAxis: 22, yAxis: 945}
+                ]]
+            }
+        }
+    ]
+};
+                    
+</script>
