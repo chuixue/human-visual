@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ECharts test</title>
+<script src="js/esl.js"></script>
+<script src="js/config.js"></script>
+</head>
+
+<body style="font:宋体;color:black">
+<div id="view" style=" width:600px; height:400px; margin:100px"></div>
+
+<script language="javascript">
+	var dtx=[], dty=[];
+	dty = [6, 28, 25, 8, 3];
+	dtx = ["20岁以下", "20-29岁", "30-39岁", "40-49岁", "50岁以上"];
+	data = dtx.map(function(d, i){ return {value:dty[i], name:d } });
+
+
+option = {
+	title : {
+        text: '公司员工性别分布',
+        subtext: '',
+        x:'center',
+		y:22
+    },
+    tooltip : {
+        show: true,
+        formatter: "{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient : 'vertical',
+        x : 470,
+		y : 100,
+        data:['男', '女']
+    },
+    series : [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius : 110,
+            itemStyle : {
+                normal : {
+                    label : { position : 'inner', },
+                    labelLine : { show : false }
+                }
+            },
+            data:[
+                {value:71, name:'现金管理部'},
+				{value:24, name:'营销管理部'},
+				{value:40, name:'投资银行部'},
+				{value:17, name:'企业业务部'},
+				{value:61, name:'风险管理部'},
+				{value:30, name:'金融市场部'},
+				{value:35, name:'机构业务部'},
+            ]
+        },
+        {
+            name:'访问来源',
+            type:'pie',
+            radius : [110, 140],
+			itemStyle : {
+                normal : {
+                    label : { position : 'inner', },
+                    labelLine : { show : false }
+                }
+            },
+            data:[
+                {value:45, name:'男'},
+				{value:26, name:'女'},
+				
+				{value:20, name:'男'},
+				{value:4, name:'女'},
+				
+				{value:30, name:'男'},
+				{value:10, name:'女'},
+
+				{value:12, name:'男'},
+				{value:5, name:'女'},
+
+				{value:31, name:'男'},
+				{value:30, name:'女'},
+
+				{value:22, name:'男'},
+				{value:8, name:'女'},				
+
+				{value:22, name:'男'},
+				{value:13, name:'女'},				
+
+			]
+        },
+        
+    ]
+};
+                    
+
+
+	Init(option, "view");
+	function Init(option,id){
+		id=id || "main"
+		require(['echarts','echarts/chart/line','echarts/chart/bar','echarts/chart/pie'],
+            function (ec) {
+                var myChart = ec.init(document.getElementById(id));				
+				myChart.setOption(option);
+            }
+        )	 		
+	}
+
+</script>
+
+</body>
+</html>

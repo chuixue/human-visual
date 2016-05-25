@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ECharts test</title>
+<script src="js/echarts.min.js"></script>
+
+</head>
+
+<body style="font:宋体;color:black">
+<div id="view" style=" width:900px; height:400px; margin:100px; font:'Times New Roman', Times, serif"></div>
+
+<script language="javascript">
+	var dtx=[],dty=[];
+	dty = [29.54, 12.99, 10.36, 10.25, 9.85, 8.53, 7.31, 6.7, 2.44, 2.03];
+	for(var i=1; i<11; i++){
+		dtx.push("Comp." + i);
+		dty[i-1] = dty[i-1] / 10;
+	}
+
+option = {
+    title : {
+        text: '碎石图',
+        subtext: '',
+		x:400
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+	grid: { show: false,},
+    calculable : true,
+    xAxis : [
+        {
+			name: '时间',
+			nameLocation:'middle',
+			nameTextStyle:{fontSize:14, fontFamily:"", color:'black'},
+			nameGap:35,
+            type : 'category',
+            data : dtx,
+			axisLabel:{textStyle:{fontFamily:'宋体', color:'black', fontSize:14}},
+			splitLine:{show: true},
+        }
+    ],
+    yAxis : [
+        {
+			name:'转发量',
+            type : 'value',
+			nameLocation:'middle',
+			nameTextStyle:{fontSize:14, fontFamily:"", color:'black'},
+			nameGap:50,
+			axisLabel:{textStyle:{fontFamily:'宋体', color:'black', fontSize:14}},
+			splitLine:{show: true}
+        }
+    ],
+    series : [
+        {
+            name:'日均消费',
+            type:'line',
+            data:dty,
+			symbol:'emptyCircle',
+			itemStyle: {
+    			normal: {
+        			lineStyle:{color:"#F77"}
+				}
+    		},
+        }
+    ]
+};
+
+	Init(option, "view");
+	function Init(option,id){
+		var myChart = echarts.init(document.getElementById(id));
+		myChart.setOption(option);	 		
+	}
+
+</script>
+
+</body>
+</html>

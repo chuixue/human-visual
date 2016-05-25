@@ -1,5 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="js/echarts.min.js"></script>
+<script src="js/esl.js"></script>
+<script src="js/config.js"></script>
 <div id="view" style=" width:1000px; height:600px; margin:20px"></div>
 
 
@@ -87,10 +88,16 @@ option = {
     ]
 };
     
+	
 	Init(option, "view");
 	function Init(option,id){
-		var myChart = echarts.init(document.getElementById(id));
-		myChart.setOption(option);	 		
+		id=id || "main"
+		require(['echarts','echarts/chart/line','echarts/chart/bar'],
+            function (ec) {
+                var myChart = ec.init(document.getElementById(id));				
+				myChart.setOption(option);
+            }
+        )	 		
 	}
 	
 </script>
